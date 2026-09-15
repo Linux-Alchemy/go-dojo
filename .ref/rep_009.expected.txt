@@ -1,0 +1,5 @@
+30 min: grace, $0
+31 min: short, $4
+120 min: short, $4
+480 min: day, $12
+481 min: overnight, $20

@@ -2,43 +2,46 @@ package main
 
 import "fmt"
 
-// ╔══════════════════════════════════════════════════════════════════╗
-// ║ DOJO REP 006  ·  ch4 functions  ·  difficulty 3/10  ·  ~4 min     ║
-// ║ shape: COMPLETE  ·  tags: multiple-returns, guard-clauses         ║
-// ╠══════════════════════════════════════════════════════════════════╣
-// ║ CONTEXT  The Red Lion pub quiz pays out in whole dollars. The     ║
-// ║ winning team splits the pot evenly; any dollars that won't split  ║
-// ║ go in the kitty for next week.                                    ║
-// ╠══════════════════════════════════════════════════════════════════╣
-// ║ TASK                                                              ║
-// ║  1. Fill in splitPot. It returns each member's share, then the    ║
-// ║     kitty. Leave main alone.                                      ║
-// ║  2. Whole dollars only: no floats anywhere.                       ║
-// ║  3. Every line of the expected output must match.                 ║
-// ╠══════════════════════════════════════════════════════════════════╣
-// ║ EXPECTED OUTPUT                                                   ║
-// ║  $50, 4 members: $12 each, $2 to the kitty                        ║
-// ║  $60, 3 members: $20 each, $0 to the kitty                        ║
-// ║  $7, 10 members: $0 each, $7 to the kitty                         ║
-// ║  $50, 0 members: $0 each, $50 to the kitty                        ║
-// ╚══════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════════╗
+// ║ DOJO REP 009 · ch3/ch4 · difficulty 3/10 · ~4 min              ║
+// ║ shape: COMPLETE · tags: switch-tagless, multiple-returns       ║
+// ╠════════════════════════════════════════════════════════════════╣
+// ║ CONTEXT  The car park barrier needs to know what to charge     ║
+// ║ and which band to print on the receipt.                        ║
+// ╠════════════════════════════════════════════════════════════════╣
+// ║ TASK                                                           ║
+// ║ 1. Fill in chargeFor using a tagless switch (no if/else).      ║
+// ║ 2. Tariff:                                                     ║
+// ║      the first 30 minutes are free      -> $0,  "grace"        ║
+// ║      up to 2 hours                      -> $4,  "short"        ║
+// ║      up to 8 hours                      -> $12, "day"          ║
+// ║      anything longer                    -> $20, "overnight"    ║
+// ║ 3. Return the fee first, then the band.                        ║
+// ║ 4. Don't touch report or main.                                 ║
+// ╠════════════════════════════════════════════════════════════════╣
+// ║ EXPECTED OUTPUT                                                ║
+// ║  30 min: grace, $0                                             ║
+// ║  31 min: short, $4                                             ║
+// ║  120 min: short, $4                                            ║
+// ║  480 min: day, $12                                             ║
+// ║  481 min: overnight, $20                                       ║
+// ╚════════════════════════════════════════════════════════════════╝
 
-// splitPot shares a prize pot in whole dollars between team members.
-// It returns each member's share and whatever is left for the kitty.
-func splitPot(pot, members int) (int, int) {
-	return 0, 0
+// chargeFor returns the fee in whole dollars and the tariff band.
+func chargeFor(minutes int) (int, string) {
+	return 0, ""
+}
+
+// report prints one receipt line for a stay.
+func report(minutes int) {
+	fee, band := chargeFor(minutes)
+	fmt.Printf("%d min: %s, $%d\n", minutes, band, fee)
 }
 
 func main() {
-	share, kitty := splitPot(50, 4)
-	fmt.Printf("$50, 4 members: $%d each, $%d to the kitty\n", share, kitty)
-
-	share, kitty = splitPot(60, 3)
-	fmt.Printf("$60, 3 members: $%d each, $%d to the kitty\n", share, kitty)
-
-	share, kitty = splitPot(7, 10)
-	fmt.Printf("$7, 10 members: $%d each, $%d to the kitty\n", share, kitty)
-
-	share, kitty = splitPot(50, 0)
-	fmt.Printf("$50, 0 members: $%d each, $%d to the kitty\n", share, kitty)
+	report(30)
+	report(31)
+	report(120)
+	report(480)
+	report(481)
 }
