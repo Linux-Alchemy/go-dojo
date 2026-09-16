@@ -34,3 +34,19 @@ Append-only. One entry per session, written by the go-dojo skill on close. Read 
 **Struggled:** type-conversion (fixed `float64(total / rounds)` by changing the params to float64 instead of converting the inputs; left a redundant `float64(...)` wrapper). No not-yet or revisit verdicts.
 **Python mind sightings:** none confirmed. The signature fix is closer to "make the types fit" than to Python mind.
 **Note:** Big step on int division: Matt explained correctly, and without help, why converting after the division is too late. That's the pattern from all three earlier sessions, now understood. The gap has moved to where a conversion belongs: he didn't see that float64 params only compiled because `main` passed bare numbers, which take whatever type is needed, until we talked it through; he then correctly put it as "`:=` locks in int". Still early days at 2–3 (three days), and there are real notes to consolidate, so no push up yet. Next session: rep 009 (COMPLETE 3/10, car park tariff, switch-tagless + multiple-returns), then a rep that passes int *variables* into a function needing a float64 result, to confirm conversion at the use site has stuck.
+
+## 2026-09-16 · 1 rep · asked 2–3 · avg 3.0 · scope: ch1–4 (carried forward) · backfilled from ledger
+
+**Worked on:** switch-tagless, multiple-returns (rep 009, car park tariff)
+**Solid:** switch-tagless, multiple-returns (output matched first run, no nudges; boundaries inclusive in the right places; fee-then-band return order right in all four branches)
+**Struggled:** none. Notes were cosmetic (gofmt blank line, redundant parens in `(60 * 2)`).
+**Python mind sightings:** none.
+**Note:** Written after the fact, at the close of the next session, because this session's note was never appended. Most of the session went on finding and removing the stray duplicate pad at `~/learn/go-dojo`. The positional-return worry from 09-14 looks settled.
+
+## 2026-09-16 · 3 reps · asked 2–3 · avg 3.0 · scope: ch1–4 (carried forward)
+
+**Worked on:** type-conversion, int-division (010), no-truthiness, logical-ops (011), no-ternary, guard-clauses, sprintf-vs-printf (012)
+**Solid:** type-conversion, int-division (010 converted the int inputs at the use site, signature untouched, first run: the 008 gap is closed); no-truthiness, logical-ops (011 clean, `!score` → `score == 0` and `||` → `&&`)
+**Struggled:** guard-clauses, no-ternary, sprintf-vs-printf, all revisit after four nudges on 012 (independent ifs overwriting one result var; an if/else returning on both branches that made the rest of the function unreachable; read `missingStock := qty - inStock` as if it limited the next block to short orders; no-ternary landed as an if/else with a return in each branch, repeating the Sprintf, rather than default-then-override)
+**Python mind sightings:** `if !score` (Python's `if not score:`) ×1, caught and fixed unprompted. Also misses the Python ternary, and said so.
+**Note:** Two quick wins, then a real wobble, and it wasn't syntax. On 012 the code was written to match what Matt meant rather than what runs: an assignment treated as a condition, and branches expected to stop running once one had "answered". Tracing A101 by hand (3 − 10 = −7, so "short by -7 items") is what made it click, and he found the fix, an outer `qty > inStock` check, himself. Range is unchanged since 09-12, but this session had real struggles, so no push yet. Type conversion and int division, the pattern from every earlier session, are now solid, which is what the reps are for. gofmt was dirty again (format-on-save still broken) and gopls slipped in a stray `golang.org/x/text/message` import. Next session: rep 013 (PREDICT 3/10, library shelfNote, built to force line-by-line tracing past an unconditional subtraction and two boundaries), then a guard-order FIX and a default-then-override COMPLETE to pull the revisit tags back up.

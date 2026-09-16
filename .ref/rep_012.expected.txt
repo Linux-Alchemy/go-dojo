@@ -1,0 +1,6 @@
+A101: pick 3 items
+A102: pick 1 item
+A103: short by 1 item
+A104: pick 6 items
+A105: nothing to pick
+A106: short by 3 items

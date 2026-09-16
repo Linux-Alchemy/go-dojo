@@ -4,11 +4,12 @@ Maintained by the `go-dojo` skill. Hand-edit freely; it's plain markdown.
 
 ## Position
 - Boot.dev course position: Chapter 4 — Functions, on closures (lesson 16 of 17; currying last) as of 2026-09-09. Notes exist for all 16 content chapters (17 is the quiz). Scope for reps is whatever Matt names; don't drill a chapter he hasn't reached on Boot.dev unless asked.
-- Last scope asked: ch1–4, difficulty 2–3, low-key/low-effort — carried forward for sessions 3 and 4 on 2026-09-14
-- Reps completed: 8 (session 4: 007 clean, 008 pass-notes)
-- Next: rep 009 in `main.go`, **not yet attempted** (COMPLETE 3/10, car park tariff: switch-tagless + multiple-returns). Session 4 (2026-09-14): carried scope ch1–4 at 2–3.
+- Last scope asked: ch1–4, difficulty 2–3, low-key/low-effort — carried forward through sessions 3–6 (last: 2026-09-16)
+- Reps completed: 12 (session 5: 009 pass-notes; session 6: 010 pass-notes, 011 clean, 012 pass-notes after several nudges)
+- Next: rep 013 in `main.go`, **not yet attempted** (PREDICT 3/10, library shelfNote: a subtraction that runs whatever the input, default-then-override fine, guard order, boundaries at late == 0 and late == 7). Session 6 (2026-09-16): carried scope ch1–4 at 2–3.
+- **Pad location:** `~/github/go-dojo`, and only here. A stray duplicate at `~/learn/go-dojo` had been in use by mistake; on 2026-09-16 rep 009's solution and the rep 010 load were copied back here and the duplicate was deleted. That path no longer exists — don't look for it. Project memory lives under the `-home-reaper-github-go-dojo` key; sessions must be started from this directory so the ledger and memory agree.
 - Check note: run `gofmt -l main.go`, not `.` — archived reps are kept verbatim with their gofmt warts.
-- Setup notes: turn inlay hints off (`<leader>uh`) for PREDICT reps; format-on-save for Go looked like it wasn't firing (gofmt dirty twice), check if it recurs. Money in cards uses `$`.
+- Setup notes: gopls auto-imported `golang.org/x/text/message` mid-rep 012 (probably from a typo); watch for stray imports. Turn inlay hints off (`<leader>uh`) for PREDICT reps; format-on-save for Go is not firing (gofmt dirty on 003, 009 — confirmed recurring, worth fixing in LazyVim). Money in cards uses `$`.
 
 ## Concept Ledger
 Ratings: **solid** / **shaky** / **revisit** / **unseen**. `last` = rep number when last touched. Selection is random within Matt's scope; ratings only weight the roll (revisit 2×, shaky 1.5×, solid 0.5×).
@@ -17,8 +18,8 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**. `last` = rep number w
 |---|---|---|---|---|
 | short-decl (`:=` vs `=` vs `var`) | 1 | solid | 007 | asked why `var x T :=` and `x T :=` fail; python type-hint reflex. 007: inner `:=` new var read correctly |
 | zero-values | 1 | unseen | – | |
-| type-conversion (int↔float, truncation) | 1 | shaky | 008 | asked why float64(a/b) gave 11.00; convert inputs, not result. 008: explained the bug correctly unprompted, but fixed it by making the params float64 |
-| int-division | 1 | shaky | 008 | predicted right after explanation; Println drops .0 on floats was news. 008: explained truncation-before-conversion correctly |
+| type-conversion (int↔float, truncation) | 1 | solid | 010 | asked why float64(a/b) gave 11.00; convert inputs, not result. 008: explained the bug correctly unprompted, but fixed it by making the params float64. 010: converted int inputs at the use site, signature untouched, first run |
+| int-division | 1 | solid | 010 | predicted right after explanation; Println drops .0 on floats was news. 008: explained truncation-before-conversion correctly. 010: `float64(minutes) / 60` first run, no nudge |
 | unused-vars-imports | 1 | unseen | – | |
 | shadowing | 1 | solid | 007 | blind PREDICT 3/3 first run |
 | strings-bytes (len, indexing) | 1 | unseen | – | |
@@ -26,23 +27,23 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**. `last` = rep number w
 | computed-const | 2 | shaky | 003 | maths right first go; bounced on output format |
 | untyped-const | 2 | unseen | – | |
 | printf-verbs (`%v %d %s %f %T %t %q`) | 2 | shaky | 003 | verbs right; missed trailing \n, label not exact |
-| sprintf-vs-printf | 2 | unseen | – | |
+| sprintf-vs-printf | 2 | revisit | 012 | Sprintf used right once guided; first draft assigned `fmt.Println(...)` to a string |
 | string-concat-types | 2 | unseen | – | |
 | if-syntax (braces, else placement) | 3 | solid | 004 | clean first run |
-| no-truthiness | 3 | unseen | – | |
-| logical-ops (and, or, not) | 3 | unseen | – | |
+| no-truthiness | 3 | solid | 011 | fixed `if !score` → `score == 0` first run |
+| logical-ops (and, or, not) | 3 | solid | 011 | spotted `\|\|` should be `&&` for joker rule first run |
 | if-init | 3 | unseen | – | |
 | switch-value | 3 | unseen | – | |
-| switch-tagless | 3 | unseen | – | |
-| no-ternary | 3 | unseen | – | |
+| switch-tagless | 3 | solid | 009 | four-branch tariff, correct fall-through order and inclusive boundaries first run |
+| no-ternary | 3 | revisit | 012 | surprised Go has none (likes Python's). 012: used an if/else with a return in each branch, repeating the Sprintf, instead of default-then-override |
 | func-signature (type-after-name) | 4 | unseen | – | |
 | grouped-params | 4 | shaky | 008 | changed `total, rounds int` to float64; fine syntax, questionable API call |
-| multiple-returns | 4 | shaky | 006 | mixed parameter order with result order; fixed after one nudge, then discussed positional assignment; correctly identified members equals 0 in the guard; recheck understanding later |
+| multiple-returns | 4 | solid | 009 | 006: mixed parameter order with result order, one nudge. 009 recheck: fee-then-band correct in all four branches, first run, no nudge — the positional model has landed |
 | blank-identifier | 4 | unseen | – | |
 | named-returns | 4 | unseen | – | |
 | naked-return | 4 | unseen | – | |
 | pass-by-value | 4 | unseen | – | |
-| guard-clauses | 4 | shaky | 006 | guard placed correctly; returned values reversed, fixed after one nudge |
+| guard-clauses | 4 | revisit | 012 | 006: guard placed correctly; returned values reversed, fixed after one nudge. 012: stacked ifs overwriting a result var; if/else returning on both sides made later code unreachable; read `d := a - b` as a condition. Four nudges |
 | func-as-value (func types) | 4 | unseen | – | |
 | no-defaults-no-kwargs | 4 | unseen | – | |
 | higher-order (func params, func types) | 4 | unseen | – | |
@@ -148,6 +149,8 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**. `last` = rep number w
 - (durable patterns only — "python mind" specifics go here once observed)
 - **int division / conversion timing** (seen 09-12, 09-13, 09-14): expects `/` to keep the fraction; `float64(a / b)` looked like it should rescue it. Keep seeding PREDICTs where the conversion comes too late. 09-14: explained the truncation-before-conversion bug correctly without help, so the model looks to be landing.
 - Watch: fixes a type mismatch by changing the function signature (int params → float64) instead of converting inside the function, seen 2026-09-14. Understood why after talking about constants (no type until used) versus variables (type fixed when created).
+- **Control flow as intent, not execution** (seen 2026-09-16, rep 012): wrote `missingStock := qty - inStock` expecting the following block to run only when the order was short. Also stacked independent ifs that each overwrote one result, and an if/else returning on both sides, which made the rest of the function unreachable. Tracing A101 by hand landed it. Seed PREDICTs that make him trace every line, plus guard-order FIXes.
+- Watch: redundant parens around whole expressions (`(60 * 2)` in 009, `(float64(minutes) / 60)` and the return in 010). Cosmetic, but seen two reps running.
 - Watch: python type-hint reflex on declarations (`x T := v`), seen 2026-09-12, not yet durable.
 - Watch: expects `Println` of a whole float64 to show `11.0` (Python repr), seen 2026-09-13.
 
@@ -162,6 +165,10 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**. `last` = rep number w
 | 006 | COMPLETE | 3 | multiple-returns, guard-clauses | pass, notes | – | zero-members return order reversed; fixed after one nudge; gofmt/vet clean |
 | 007 | PREDICT | 3 | short-decl, shadowing | clean | ~3 | 3/3 blind; inner `:=` scoped to the if block |
 | 008 | FIX | 3 | type-conversion, int-division, grouped-params | pass, notes | – | explained the bug right; fixed by making params float64, leaving a redundant float64(...) |
+| 009 | COMPLETE | 3 | switch-tagless, multiple-returns | pass, notes | – | output matched first run, no nudges; notes were cosmetic only (gofmt blank line, redundant parens in `(60 * 2)`) |
+| 010 | TRANSLATE | 3 | type-conversion, int-division | pass, notes | – | converted inputs not result, signature kept, first run; only flag was redundant parens around both expressions |
+| 011 | FIX | 3 | no-truthiness, logical-ops | clean | – | `!score` → `score == 0`, `\|\|` → `&&`; Matt: "really just about choosing the right comparison operators" |
+| 012 | COMPLETE | 3 | no-ternary, guard-clauses, sprintf-vs-printf | pass, notes | >8 | matched after four nudges (overwrites, unreachable, assignment-as-check, nesting); gofmt dirty; else-after-return; zero guard second |
 
 ## Session Log
 - 2026-09-09: dojo created; rep 001 loaded.
@@ -169,4 +176,6 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**. `last` = rep number w
 - 2026-09-13 (session 2): rep 004 clean; 005 pass-notes; rep 006 loaded, paused before attempt.
 - 2026-09-14 (session 3): rep 006 pass-notes at 3/10 after one nudge; discussed parameter order versus positional return values and why `members, pot` works in the zero-members guard. Rep 007 loaded, paused before attempt; scope stays ch1–4 at 2–3.
 - 2026-09-14 (session 4): rep 007 clean (blind PREDICT, shadowing); 008 pass-notes (fixed int division by changing the signature). Rep 009 loaded, paused before attempt. Talked about untyped constants versus typed variables (why float64 params only worked with literal arguments). Scope stays ch1–4 at 2–3.
+- 2026-09-16 (session 5): rep 009 pass-notes at 3/10 — correct first run, no nudges, both tags promoted to solid (cosmetic flags only). Discovered a stray duplicate pad at `~/learn/go-dojo` that Matt had been working in by mistake; rep 009 and the rep 010 load were copied back into `~/github/go-dojo` and the duplicate removed. Rep 010 loaded, paused before attempt. Scope stays ch1–4 at 2–3.
+- 2026-09-16 (session 6): 010 pass-notes (conversion at the use site, first run: type-conversion and int-division now solid); 011 clean (no-truthiness, logical-ops); 012 pass-notes after four nudges (control flow: assignment read as a condition, both-branch returns made later code unreachable), so guard-clauses, no-ternary and sprintf go to revisit. Talked about Go having no ternary. Rep 013 (PREDICT, trace drill) loaded, paused before attempt. Scope stays ch1–4 at 2–3. Session 5's SESSIONS.md entry had been missed and was backfilled.
 - 2026-09-12: original rep 001 (splitName) withdrawn before attempt — relied on slicing (ch9) and strings.Index Matt hasn't met. Replaced with a ch1 FIX at 2/10.
