@@ -12,6 +12,7 @@ Shared scratch pad for short Go reps. Matt opens `main.go` in nvim; Claude (via 
 | `go.mod` | So `go run .` works. Module name `dojo`. Leave it alone. |
 | `DOJO_LOG.md` | The ledger: concept ratings, rep history. Claude maintains it. |
 | `SESSIONS.md` | Append-only session notes: scope, average difficulty, solid, struggled, coach's read. Grows forever; that's the point. |
+| `lessons/` | Boot.dev lessons flagged for review: the lesson text, your solution, what to drill, and rep seeds. Markdown only, so nothing here compiles. |
 | `archive/` | Every completed rep, as `rep_NNN_<slug>.go` with `//go:build ignore` so it never compiles by accident. Your solution, verbatim, plus Claude's verdict as a trailing comment. |
 | `.ref/` | Claude's reference solutions, used to verify expected output before a rep is published. Not for peeking. |
 

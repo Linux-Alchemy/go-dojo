@@ -3,10 +3,11 @@
 Maintained by the `go-dojo` skill. Hand-edit freely; it's plain markdown.
 
 ## Position
-- Boot.dev course position: Chapter 4 — Functions, on closures (lesson 16 of 17; currying last) as of 2026-09-09. Notes exist for all 16 content chapters (17 is the quiz). Scope for reps is whatever Matt names; don't drill a chapter he hasn't reached on Boot.dev unless asked.
+- Boot.dev course position: Chapter 4 — Functions finished (closures and currying both passed) as of 2026-09-17; chapter 5 not confirmed started. Notes exist for all 16 content chapters (17 is the quiz). Scope for reps is whatever Matt names; don't drill a chapter he hasn't reached on Boot.dev unless asked.
 - Last scope asked: ch1–4, difficulty 2–3, low-key/low-effort — carried forward through sessions 3–6 (last: 2026-09-16)
 - Reps completed: 12 (session 5: 009 pass-notes; session 6: 010 pass-notes, 011 clean, 012 pass-notes after several nudges)
 - Next: rep 013 in `main.go`, **not yet attempted** (PREDICT 3/10, library shelfNote: a subtraction that runs whatever the input, default-then-override fine, guard order, boundaries at late == 0 and late == 7). Session 6 (2026-09-16): carried scope ch1–4 at 2–3.
+- **Lesson imports:** `lessons/` holds Boot.dev lessons Matt has flagged for review (lesson text, his solution, what to drill, rep seeds). A tag rated from a lesson import rather than a rep has `last` = –. Use the lesson file as the model when writing reps for that tag.
 - **Pad location:** `~/github/go-dojo`, and only here. A stray duplicate at `~/learn/go-dojo` had been in use by mistake; on 2026-09-16 rep 009's solution and the rep 010 load were copied back here and the duplicate was deleted. That path no longer exists — don't look for it. Project memory lives under the `-home-reaper-github-go-dojo` key; sessions must be started from this directory so the ledger and memory agree.
 - Check note: run `gofmt -l main.go`, not `.` — archived reps are kept verbatim with their gofmt warts.
 - Setup notes: gopls auto-imported `golang.org/x/text/message` mid-rep 012 (probably from a typo); watch for stray imports. Turn inlay hints off (`<leader>uh`) for PREDICT reps; format-on-save for Go is not firing (gofmt dirty on 003, 009 — confirmed recurring, worth fixing in LazyVim). Money in cards uses `$`.
@@ -46,10 +47,10 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**. `last` = rep number w
 | guard-clauses | 4 | revisit | 012 | 006: guard placed correctly; returned values reversed, fixed after one nudge. 012: stacked ifs overwriting a result var; if/else returning on both sides made later code unreachable; read `d := a - b` as a condition. Four nudges |
 | func-as-value (func types) | 4 | unseen | – | |
 | no-defaults-no-kwargs | 4 | unseen | – | |
-| higher-order (func params, func types) | 4 | unseen | – | |
+| higher-order (func params, func types) | 4 | unseen | – | not rated, but currying leans on it: drill this alone before any currying rep (first two seeds in `lessons/ch4_currying.md`) |
 | anonymous-funcs | 4 | unseen | – | |
-| currying (func returning func) | 4 | unseen | – | |
-| closures (capture by reference) | 4 | unseen | – | |
+| currying (func returning func) | 4 | revisit | – | no rep yet. 2026-09-17: passed the Boot.dev `getLogger` assignment but found it quite a bit harder than closures. Lesson text, his solution, rep ladder and what to pre-supply in `lessons/ch4_currying.md` |
+| closures (capture by reference) | 4 | revisit | – | no rep yet. 2026-09-17: passed the Boot.dev `adder()` assignment but Matt flagged the lesson as one that jammed him up. Lesson text, his solution and rep seeds in `lessons/ch4_closures.md` |
 | defer (LIFO, args evaluated early) | 4 | unseen | – | |
 | struct-define-literal (named vs positional) | 5 | unseen | – | |
 | struct-zero-values | 5 | unseen | – | |
@@ -178,4 +179,5 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**. `last` = rep number w
 - 2026-09-14 (session 4): rep 007 clean (blind PREDICT, shadowing); 008 pass-notes (fixed int division by changing the signature). Rep 009 loaded, paused before attempt. Talked about untyped constants versus typed variables (why float64 params only worked with literal arguments). Scope stays ch1–4 at 2–3.
 - 2026-09-16 (session 5): rep 009 pass-notes at 3/10 — correct first run, no nudges, both tags promoted to solid (cosmetic flags only). Discovered a stray duplicate pad at `~/learn/go-dojo` that Matt had been working in by mistake; rep 009 and the rep 010 load were copied back into `~/github/go-dojo` and the duplicate removed. Rep 010 loaded, paused before attempt. Scope stays ch1–4 at 2–3.
 - 2026-09-16 (session 6): 010 pass-notes (conversion at the use site, first run: type-conversion and int-division now solid); 011 clean (no-truthiness, logical-ops); 012 pass-notes after four nudges (control flow: assignment read as a condition, both-branch returns made later code unreachable), so guard-clauses, no-ternary and sprintf go to revisit. Talked about Go having no ternary. Rep 013 (PREDICT, trace drill) loaded, paused before attempt. Scope stays ch1–4 at 2–3. Session 5's SESSIONS.md entry had been missed and was backfilled.
+- 2026-09-17 (lesson import, no reps): Matt brought in Boot.dev lessons that jammed him up. Closures added as `lessons/ch4_closures.md` and currying as `lessons/ch4_currying.md`; both tags set to revisit, currying reported as the harder of the two. Chapter 4 now finished on Boot.dev. Rep 013 still loaded and unattempted.
 - 2026-09-12: original rep 001 (splitName) withdrawn before attempt — relied on slicing (ch9) and strings.Index Matt hasn't met. Replaced with a ch1 FIX at 2/10.
