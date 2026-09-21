@@ -3,10 +3,15 @@
 Maintained by the `go-dojo` skill. Hand-edit freely; it's plain markdown.
 
 ## Position
-- Boot.dev course position: Chapter 4 — Functions finished (closures and currying both passed) as of 2026-09-17; chapter 5 not confirmed started. Notes exist for all 16 content chapters (17 is the quiz). Scope for reps is whatever Matt names; don't drill a chapter he hasn't reached on Boot.dev unless asked.
-- Last scope asked: ch1–4, difficulty 2–3, low-key/low-effort — carried forward through sessions 3–6 (last: 2026-09-16)
-- Reps completed: 12 (session 5: 009 pass-notes; session 6: 010 pass-notes, 011 clean, 012 pass-notes after several nudges)
-- Next: rep 013 in `main.go`, **not yet attempted** (PREDICT 3/10, library shelfNote: a subtraction that runs whatever the input, default-then-override fine, guard order, boundaries at late == 0 and late == 7). Session 6 (2026-09-16): carried scope ch1–4 at 2–3.
+- Boot.dev course position: **Chapter 5 — Structs, about halfway** as of 2026-09-20 ("I basically get the idea, so far"). Ch5 is ten lessons: Structs in Go · Nested Structs · Anonymous Structs · Embedded Structs · Struct Methods · Memory Layout · Empty Struct · Empty Struct Memory · Update Users · Send Message. Halfway ≈ through Struct Methods. Ch1–4 finished. Notes exist for all 16 content chapters (17 is the quiz).
+- **Position reporting is Matt's call.** He said on 2026-09-20 he'll report where he is in the Boot.dev course as he goes so reps track it, or name a topic outright when he wants one. Take the newest position he gives over anything written here, and don't drill past it. Within a chapter this applies lesson by lesson, not just chapter by chapter: hold the back half of ch5 (memory-layout, empty-struct) until he confirms.
+- **Current scope (set 2026-09-20, session 7, replaces the old carried-forward one):** two bands running together —
+  - **ch1–4 at difficulty 3–4** (up from 2–3, which had been carried unchanged since 09-12)
+  - **ch5 structs at difficulty 2–3**, new material, starting low
+  Structs tags opened for selection: `struct-define-literal`, `struct-zero-values`, `nested-structs`. Holding `anonymous-structs`, `embedded-structs`, `methods-value-receiver` until Matt confirms he's past those lessons. He reviewed this split on 2026-09-20 and called it "accurate enough", so it is agreed, not assumed.
+- Previous scope: ch1–4 at 2–3, low-key/low-effort, carried forward through sessions 3–7.
+- Reps completed: 16 (session 7: 013 pass-notes 5/6 blind, 014 pass-notes after one nudge, 015 clean, 016 clean)
+- Next: rep 017 in `main.go`, **not yet attempted** (COMPLETE 3/10, quiz-night applyRule: a func-typed parameter called through, behind a negative-score guard; boundary at 0 deliberately placed to re-test the rep 013 miss). First `higher-order` rep, drawn by repair-before-retry on `currying`; seed 2 from `lessons/ch4_currying.md`. Loaded before the scope change; 3/10 is inside the new ch1–4 band, so it stands.
 - **Lesson imports:** `lessons/` holds Boot.dev lessons Matt has flagged for review (lesson text, his solution, what to drill, rep seeds). A tag rated from a lesson import rather than a rep has `last` = –. Use the lesson file as the model when writing reps for that tag.
 - **Pad location:** `~/github/go-dojo`, and only here. A stray duplicate at `~/learn/go-dojo` had been in use by mistake; on 2026-09-16 rep 009's solution and the rep 010 load were copied back here and the duplicate was deleted. That path no longer exists — don't look for it. Project memory lives under the `-home-reaper-github-go-dojo` key; sessions must be started from this directory so the ledger and memory agree.
 - Check note: run `gofmt -l main.go`, not `.` — archived reps are kept verbatim with their gofmt warts.
@@ -22,7 +27,7 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**, on the evidence rules
 | type-conversion (int↔float, truncation) | 1 | shaky | 2026-09-16 | – | – | asked why float64(a/b) gave 11.00; convert inputs, not result. 008: explained the bug correctly unprompted, but fixed it by making the params float64. 010: converted int inputs at the use site, signature untouched, first run. 2026-09-17 (v2.1 migration): solid → shaky; one clean shape on record (TRANSLATE 010), needs a second, different shape |
 | int-division | 1 | shaky | 2026-09-16 | – | – | predicted right after explanation; Println drops .0 on floats was news. 008: explained truncation-before-conversion correctly. 010: `float64(minutes) / 60` first run, no nudge. 2026-09-17 (v2.1 migration): solid → shaky; one clean shape on record (TRANSLATE 010), needs a second, different shape |
 | unused-vars-imports | 1 | unseen | – | – | – | |
-| shadowing | 1 | shaky | 2026-09-14 | – | – | blind PREDICT 3/3 first run. 2026-09-17 (v2.1 migration): solid → shaky; one clean shape on record (PREDICT 007), needs a second, different shape |
+| shadowing | 1 | solid | 2026-09-20 | 2026-09-25 | – | blind PREDICT 3/3 first run (007). 2026-09-17 (v2.1 migration): solid → shaky pending a second shape. 016: clean FIX, found the `:=` inside the closure unaided — **solid** on two clean shapes (PREDICT 007 + FIX 016) |
 | strings-bytes (len, indexing) | 1 | unseen | – | – | – | |
 | const-basics | 2 | shaky | 2026-09-12 | – | – | typed every const (`const x int = 11`), forcing conversions |
 | computed-const | 2 | shaky | 2026-09-12 | – | – | maths right first go; bounced on output format |
@@ -35,8 +40,8 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**, on the evidence rules
 | logical-ops (and, or, not) | 3 | shaky | 2026-09-16 | – | – | spotted `\|\|` should be `&&` for joker rule first run. 2026-09-17 (v2.1 migration): solid → shaky; one clean shape on record (FIX 011), needs a second, different shape |
 | if-init | 3 | unseen | – | – | – | |
 | switch-value | 3 | unseen | – | – | – | |
-| switch-tagless | 3 | shaky | 2026-09-16 | – | – | four-branch tariff, correct fall-through order and inclusive boundaries first run. 2026-09-17 (v2.1 migration): solid → shaky; one clean shape on record (COMPLETE 009), needs a second, different shape |
-| no-ternary | 3 | revisit | 2026-09-16 | – | – | surprised Go has none (likes Python's). 012: used an if/else with a return in each branch, repeating the Sprintf, instead of default-then-override |
+| switch-tagless | 3 | shaky | 2026-09-20 | – | – | four-branch tariff, correct fall-through order and inclusive boundaries first run. 2026-09-17 (v2.1 migration): solid → shaky; one clean shape on record (COMPLETE 009), needs a second, different shape. 014: reached for tagless unprompted and ordered the cases right, but wrote the cases under a tagged `switch age` — one nudge, so still not a clean second shape |
+| no-ternary | 3 | shaky | 2026-09-20 | – | – | surprised Go has none (likes Python's). 012: used an if/else with a return in each branch, repeating the Sprintf, instead of default-then-override. 013: read the default-then-override shape correctly but applied the override at the wrong boundary (`late > 7` is false at 7) — revisit → shaky |
 | func-signature (type-after-name) | 4 | unseen | – | – | – | |
 | grouped-params | 4 | shaky | 2026-09-14 | – | – | changed `total, rounds int` to float64; fine syntax, questionable API call |
 | multiple-returns | 4 | shaky | 2026-09-16 | – | – | 006: mixed parameter order with result order, one nudge. 009 recheck: fee-then-band correct in all four branches, first run, no nudge — the positional model has landed. 2026-09-17 (v2.1 migration): solid → shaky; one clean shape on record (COMPLETE 009), needs a second, different shape |
@@ -44,13 +49,13 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**, on the evidence rules
 | named-returns | 4 | unseen | – | – | – | |
 | naked-return | 4 | unseen | – | – | – | |
 | pass-by-value | 4 | unseen | – | – | – | |
-| guard-clauses | 4 | revisit | 2026-09-16 | – | – | 006: guard placed correctly; returned values reversed, fixed after one nudge. 012: stacked ifs overwriting a result var; if/else returning on both sides made later code unreachable; read `d := a - b` as a condition. Four nudges |
+| guard-clauses | 4 | shaky | 2026-09-20 | – | – | 006: guard placed correctly; returned values reversed, fixed after one nudge. 012: stacked ifs overwriting a result var; if/else returning on both sides made later code unreachable; read `d := a - b` as a condition. Four nudges. 013: traced guard *order* correctly blind (zero-guard before the late check; exactly 0 read as not-late) — revisit → shaky. 014: both boundaries right (16 → $12, 65 → $9), but reached by rewriting the chain as a switch rather than diagnosing the planted bugs |
 | func-as-value (func types) | 4 | unseen | – | – | – | |
 | no-defaults-no-kwargs | 4 | unseen | – | – | – | |
-| higher-order (func params, func types) | 4 | unseen | – | – | – | not rated, but currying leans on it: drill this alone before any currying rep (first two seeds in `lessons/ch4_currying.md`) |
+| higher-order (func params, func types) | 4 | unseen | – | – | – | currying leans on it: drill this alone before any currying rep (first two seeds in `lessons/ch4_currying.md`). Rep 017 loaded 2026-09-20 as the first, drawn by repair-before-retry on currying |
 | anonymous-funcs | 4 | unseen | – | – | – | |
 | currying (func returning func) | 4 | revisit | – | – | higher-order | no rep yet. 2026-09-17: passed the Boot.dev `getLogger` assignment but found it quite a bit harder than closures. Lesson text, his solution, rep ladder and what to pre-supply in `lessons/ch4_currying.md` |
-| closures (capture by reference) | 4 | revisit | – | – | – | no rep yet. 2026-09-17: passed the Boot.dev `adder()` assignment but Matt flagged the lesson as one that jammed him up. Lesson text, his solution and rep seeds in `lessons/ch4_closures.md` |
+| closures (capture by reference) | 4 | solid | 2026-09-20 | 2026-09-25 | – | 2026-09-17: passed the Boot.dev `adder()` assignment but Matt flagged the lesson as one that jammed him up; lesson text, his solution and rep seeds in `lessons/ch4_closures.md`. 015: 7/7 blind PREDICT, two closures from one factory kept separate totals and a third made late started at 0 — revisit → shaky. 016: clean FIX, spotted `sold := sold + n` reborn every call while the enclosed one never moved — **solid** on two clean shapes |
 | defer (LIFO, args evaluated early) | 4 | unseen | – | – | – | |
 | struct-define-literal (named vs positional) | 5 | unseen | – | – | – | |
 | struct-zero-values | 5 | unseen | – | – | – | |
@@ -154,6 +159,9 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**, on the evidence rules
 - Watch: redundant parens around whole expressions (`(60 * 2)` in 009, `(float64(minutes) / 60)` and the return in 010). Cosmetic, but seen two reps running.
 - Watch: python type-hint reflex on declarations (`x T := v`), seen 2026-09-12, not yet durable.
 - Watch: expects `Println` of a whole float64 to show `11.0` (Python repr), seen 2026-09-13.
+- **Watch: the boundary at the exact value.** Reads a comparison's shape correctly and then lands the wrong side of `>` vs `>=`. Caught it unaided on 004 (`< 2` → `<= 2`) and on 009's tariff; missed it on 013 (`late > 7` is false at exactly 7). Not yet durable — it goes both ways — but it is the same question three times. Keep planting the exact-boundary case in expected output so a wrong call shows.
+- Watch: on a FIX, rewrites the construct rather than diagnosing the planted bug (014: swapped the whole if-chain for a tagless switch, which was better code but meant neither planted bug was ever named). Good instinct, weaker evidence. Seen once; if it recurs, ask him to name the bug before he fixes it.
+- Resolved-ish: gofmt came back clean on all four reps this session (013–016), after being dirty on 003, 009 and 012. Either format-on-save got fixed or he's running it by hand. Stop treating it as a standing issue unless it reappears.
 
 ## Rep History
 | Rep | Shape | Diff | Tags | Verdict | Time | Note |
@@ -170,6 +178,10 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**, on the evidence rules
 | 010 | TRANSLATE | 3 | type-conversion, int-division | pass, notes | – | converted inputs not result, signature kept, first run; only flag was redundant parens around both expressions |
 | 011 | FIX | 3 | no-truthiness, logical-ops | clean | – | `!score` → `score == 0`, `\|\|` → `&&`; Matt: "really just about choosing the right comparison operators" |
 | 012 | COMPLETE | 3 | no-ternary, guard-clauses, sprintf-vs-printf | pass, notes | >8 | matched after four nudges (overwrites, unreachable, assignment-as-check, nesting); gofmt dirty; else-after-return; zero guard second |
+| 013 | PREDICT | 3 | guard-clauses, no-ternary | pass, notes | – | 5/6 blind; guard order traced right on both boundary cases; missed the `> 7` override at exactly 7 (Momo, fine $1 not $3); gofmt/vet clean |
+| 014 | FIX | 3 | guard-clauses, if-syntax (→ switch-tagless in practice) | pass, notes | – | output matched all 7; replaced the if-chain with a tagless switch instead of diagnosing the two planted bugs; one nudge — tagless cases under a tagged `switch age` (`untyped bool value` → int); gofmt/vet clean |
+| 015 | PREDICT | 3 | closures | clean | – | 7/7 blind; annotated each line with the prior total, so the tracing was real; separate factories, separate totals, late closure starts at 0; gofmt/vet clean |
+| 016 | FIX | 3 | closures, shadowing | clean | – | `sold := sold + n` → `sold += n` first run, no nudges; both tags promoted to solid; gofmt/vet clean |
 
 ## Session Log
 - 2026-09-09: dojo created; rep 001 loaded.
@@ -181,4 +193,5 @@ Ratings: **solid** / **shaky** / **revisit** / **unseen**, on the evidence rules
 - 2026-09-16 (session 6): 010 pass-notes (conversion at the use site, first run: type-conversion and int-division now solid); 011 clean (no-truthiness, logical-ops); 012 pass-notes after four nudges (control flow: assignment read as a condition, both-branch returns made later code unreachable), so guard-clauses, no-ternary and sprintf go to revisit. Talked about Go having no ternary. Rep 013 (PREDICT, trace drill) loaded, paused before attempt. Scope stays ch1–4 at 2–3. Session 5's SESSIONS.md entry had been missed and was backfilled.
 - 2026-09-17 (lesson import, no reps): Matt brought in Boot.dev lessons that jammed him up. Closures added as `lessons/ch4_closures.md` and currying as `lessons/ch4_currying.md`; both tags set to revisit, currying reported as the harder of the two. Chapter 4 now finished on Boot.dev. Rep 013 still loaded and unattempted.
 - 2026-09-17 (ledger migration, no reps): skill moved to v2.1.0. Ledger gained `retest` and `needs` columns; `last` converted from rep numbers to dates. All nine `solid` tags dropped to `shaky` under the two-clean-shapes rule (each has one clean shape on record, named in its Notes), so nothing is due for retest yet. `needs` set for currying → higher-order only. Close phrase is `dojo close`.
+- 2026-09-20 (session 7): four reps, all at 3/10 — 013 pass-notes (5/6 blind; missed the `> 7` override at exactly 7), 014 pass-notes (matched, but solved by replacing the if-chain with a tagless switch after one nudge on the switch tag), 015 clean and 016 clean, which took **closures** and **shadowing** to solid — the first promotions since the v2.1 migration, and closures was a lesson Matt had flagged as jamming him up three days earlier. Talked through tagged vs tagless switch (`switch true`) and agreed it wasn't python mind, just two Go forms crossed. Matt then reported Boot.dev position (ch5 structs, about halfway) and **raised the scope himself**: ch1–4 to 3–4, ch5 structs at 2–3, with the back half of ch5 held back by agreement. Rep 017 (COMPLETE 3/10, higher-order) loaded and unattempted.
 - 2026-09-12: original rep 001 (splitName) withdrawn before attempt — relied on slicing (ch9) and strings.Index Matt hasn't met. Replaced with a ch1 FIX at 2/10.

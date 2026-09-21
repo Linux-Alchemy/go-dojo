@@ -3,45 +3,53 @@ package main
 import "fmt"
 
 // ╔════════════════════════════════════════════════════════════════╗
-// ║ DOJO REP 013 · ch3/ch4 · difficulty 3/10 · ~4 min              ║
-// ║ shape: PREDICT · tags: guard-clauses, no-ternary               ║
+// ║ DOJO REP 017 · ch4 functions · difficulty 3/10  ·  ~5 min      ║
+// ║ shape: COMPLETE · tags: higher-order, guard-clauses            ║
 // ╠════════════════════════════════════════════════════════════════╣
-// ║ CONTEXT  The village library prints a note for every book on   ║
-// ║ its list. Somebody wants to know what it'll actually say.      ║
+// ║ CONTEXT  Quiz night at the Crown. The quizmaster changes how   ║
+// ║ he scores the two rounds every single week, and is not to be   ║
+// ║ reasoned with.                                                 ║
 // ╠════════════════════════════════════════════════════════════════╣
 // ║ TASK                                                           ║
-// ║ 1. Write your predicted output as a comment above main,        ║
-// ║    one line per call, BEFORE running anything.                 ║
-// ║ 2. Trace every line of shelfNote for each call, top to bottom. ║
-// ║ 3. Then go run . and compare. Don't change the code.           ║
+// ║ 1. Fill in applyRule so it scores a team's two rounds using    ║
+// ║    whichever rule it was handed. It must not care which one.   ║
+// ║ 2. A team that missed a round has a negative score for it.     ║
+// ║    They score 0 for the night, whatever the rule would say.    ║
+// ║ 3. Don't touch main, bestOf or combined.                       ║
 // ║                                                                ║
-// ║ (Inlay hints off: <leader>uh)                                  ║
+// ║ It compiles as it stands, and it is wrong as it stands.        ║
+// ╠════════════════════════════════════════════════════════════════╣
+// ║ EXPECTED OUTPUT                                                ║
+// ║   19                                                           ║
+// ║   31                                                           ║
+// ║   0                                                            ║
+// ║   0                                                            ║
+// ║   7                                                            ║
 // ╚════════════════════════════════════════════════════════════════╝
 
-// shelfNote returns the librarian's note for one book.
-func shelfNote(title string, daysOut, loanDays int) string {
-	late := daysOut - loanDays
-	fine := 1
-	if late > 7 {
-		fine = 3
+// bestOf returns the higher of two round scores.
+func bestOf(x, y int) int {
+	if x > y {
+		return x
 	}
-	if daysOut == 0 {
-		return title + ": on the shelf"
-	}
-	if late > 0 {
-		return fmt.Sprintf("%s: %d days late, fine $%d", title, late, fine)
-	}
-	return fmt.Sprintf("%s: %d days left", title, -late)
+	return y
 }
 
-// PREDICTION:
-//
+// combined returns the two round scores added together.
+func combined(x, y int) int {
+	return x + y
+}
+
+// applyRule scores one team's two rounds using whichever rule the
+// quizmaster picked tonight.
+func applyRule(a, b int, rule func(int, int) int) int {
+	return 0
+}
 
 func main() {
-	fmt.Println(shelfNote("Dune", 3, 14))
-	fmt.Println(shelfNote("Emma", 20, 14))
-	fmt.Println(shelfNote("Ulysses", 30, 14))
-	fmt.Println(shelfNote("Heidi", 0, 14))
-	fmt.Println(shelfNote("Kim", 14, 14))
-	fmt.Println(shelfNote("Momo", 21, 14))
+	fmt.Println(applyRule(12, 19, bestOf))
+	fmt.Println(applyRule(12, 19, combined))
+	fmt.Println(applyRule(-1, 19, bestOf))
+	fmt.Println(applyRule(12, -1, combined))
+	fmt.Println(applyRule(0, 7, bestOf))
 }
