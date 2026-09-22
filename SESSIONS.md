@@ -72,3 +72,25 @@ Next session: rep 017 (COMPLETE 3/10, quiz-night `applyRule`) is loaded and unat
 **Struggled:** struct-define-literal (named-field literals `ticket{plate: "..."}` were new; tried `ticket{ticket.plate, ...}`, reading a field off the type; needed nudge + snippet, so revisit, recovered on 019). Also missed a planted hours/rate swap on 018 because the total came out the same.
 **Python mind sightings:** none confirmed. The `b := a` alias read on 020 is Python's model (assignment binds a name to the same object), but his predictions contradicted it, so it's a wording gap as much as a mental-model one. Worth one pointed rep.
 **Note:** The struct reps did what first reps should: they found the gap straight away (named-field literals) and closed most of it within one rep. Two of the four hiccups were my card errors, not his: 017's step 2 was badly worded, and 020 used `++` without explaining it. Card rule added to the ledger. No stagnation call: the bands were raised only yesterday and this session had real struggles, so 2–3 on structs is doing its job. Next session: rep 021 (COMPLETE 3/10, first value-receiver method, boundary at exactly 5 kg) is loaded. After it, a copy-semantics rep where he has to *say* copy or alias, then embedded structs, which he asked for by name and hasn't touched yet.
+
+
+## 2026-09-22 · 2 reps · asked 2–3 · avg 3.0 · scope: ch5 structs only
+
+**Worked on:** methods-value-receiver (021 COMPLETE, 022 FIX)
+**Solid:** no new promotions; closures and shadowing remain solid. Methods moved from revisit after 021 to shaky after 022.
+**Struggled:** methods-value-receiver (021 needed multiple nudges on method name versus local variable, receiver field access, surcharge threshold and subtraction). On 022, the code fix was unaided and clean; explanation needed clarification that `lantern{}` creates a new zero-valued lantern and the receiver gets the whole struct copy, not just its fuel number.
+**Python mind sightings:** none confirmed this session; receiver and literal terminology needed clarification, without enough evidence to attribute that to Python.
+**Note:** Both reps produced the expected output and passed vet; 021 had a redundant `== true` and an extra blank line, while 022 was gofmt-clean. Matt correctly traced the 6-unit lantern through the false guard to 18 minutes, then confirmed the whole-struct-copy explanation made sense. That is progress, but not independent evidence of the copy model yet. Keep structs at 2–3: the band was recently set and these reps are still finding useful gaps; methods are improving, with another independent explanation needed before calling them settled. No difficulty increase suggested.
+
+Paused at Matt's request. Rep 023 (TRANSLATE, anonymous structs, 3/10) remains loaded and unattempted in main.go; resume there at ch5 structs only, 2–3. Reps 021–022 are archived; total completed is 22. No rep was loaded during close.
+
+
+## 2026-09-19 · recovered 2026-09-22 · 3 historical exercises · avg 2.3 · scope: ch5 typed validation and zero values
+
+**Provenance:** Recovered from the pre-sync stash. These exercises originally used numbers 013–015 in a separate local history; they are identified here by name and stored in [a dated archive](archive/2026-09-19-import/README.md). They do not renumber or increment the current sequence, which remains 22 completed with rep 023 pending. This entry is appended out of date order to preserve existing notes.
+
+**Worked on:** collection validation (COMPLETE 3/10, pass, notes); nested stock (FIX 2/10, clean); struct zero values (PREDICT 2/10, pass, notes). Imported [Boot.dev nested-user validation lesson](lessons/ch5_typed_validation.md).
+**Solid:** none promoted. The nested-field FIX supplies one clean shape; other exercises required notes.
+**Struggled:** collection validation used a redundant boolean-return branch; zero-value predictions were correct in prose but described bool as numeric zero converting to false. Clarified direct false and `%q` versus `%s`. Prediction comments beginning `//line` caused compiler-directive errors; Matt corrected those before the historical session closed.
+**Python mind sightings:** checking possible types of concretely typed fields (reported lesson difficulty); interpreting a bool default through numeric truthiness.
+**Note:** Preserve the distinction between Go's type guarantees and the task's permitted values. Historical checks were recorded as passing; they were not rerun as part of recovery. No independent mastery is inferred from the supplied lesson solution or explanations. Newer ratings and dates stay intact; typed-value-validation is restored as shaky, last exercised 2026-09-19. Resume the current pending rep 023, not the old pad.
