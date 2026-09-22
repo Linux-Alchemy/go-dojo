@@ -3,53 +3,47 @@ package main
 import "fmt"
 
 // ╔════════════════════════════════════════════════════════════════╗
-// ║ DOJO REP 017 · ch4 functions · difficulty 3/10  ·  ~5 min      ║
-// ║ shape: COMPLETE · tags: higher-order, guard-clauses            ║
+// ║ DOJO REP 021 · ch5 structs · difficulty 3/10  ·  ~4 min        ║
+// ║ shape: COMPLETE · tags: methods-value-receiver                 ║
 // ╠════════════════════════════════════════════════════════════════╣
-// ║ CONTEXT  Quiz night at the Crown. The quizmaster changes how   ║
-// ║ he scores the two rounds every single week, and is not to be   ║
-// ║ reasoned with.                                                 ║
+// ║ CONTEXT  Dash & Dump Couriers price every parcel the same way, ║
+// ║ and the till wants to ask the parcel itself what it costs.     ║
 // ╠════════════════════════════════════════════════════════════════╣
 // ║ TASK                                                           ║
-// ║ 1. Fill in applyRule so it scores a team's two rounds using    ║
-// ║    whichever rule it was handed. It must not care which one.   ║
-// ║ 2. A team that missed a round has a negative score for it.     ║
-// ║    They score 0 for the night, whatever the rule would say.    ║
-// ║ 3. Don't touch main, bestOf or combined.                       ║
-// ║                                                                ║
-// ║ It compiles as it stands, and it is wrong as it stands.        ║
+// ║ 1. Write a method called cost on parcel. It returns the price  ║
+// ║    in whole dollars:                                           ║
+// ║      · $4 flat for any parcel                                  ║
+// ║      · plus $2 for every kg over 5 kg                          ║
+// ║      · express doubles the whole price                         ║
+// ║ 2. Once it exists, uncomment the prints in main.               ║
+// ║ 3. Don't touch the struct or the parcels.                      ║
 // ╠════════════════════════════════════════════════════════════════╣
 // ║ EXPECTED OUTPUT                                                ║
-// ║   19                                                           ║
-// ║   31                                                           ║
-// ║   0                                                            ║
-// ║   0                                                            ║
-// ║   7                                                            ║
+// ║   4                                                            ║
+// ║   4                                                            ║
+// ║   10                                                           ║
+// ║   20                                                           ║
+// ║   8                                                            ║
 // ╚════════════════════════════════════════════════════════════════╝
 
-// bestOf returns the higher of two round scores.
-func bestOf(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
-}
-
-// combined returns the two round scores added together.
-func combined(x, y int) int {
-	return x + y
-}
-
-// applyRule scores one team's two rounds using whichever rule the
-// quizmaster picked tonight.
-func applyRule(a, b int, rule func(int, int) int) int {
-	return 0
+type parcel struct {
+	weightKg int
+	express  bool
 }
 
 func main() {
-	fmt.Println(applyRule(12, 19, bestOf))
-	fmt.Println(applyRule(12, 19, combined))
-	fmt.Println(applyRule(-1, 19, bestOf))
-	fmt.Println(applyRule(12, -1, combined))
-	fmt.Println(applyRule(0, 7, bestOf))
+	letter := parcel{weightKg: 3}
+	boots := parcel{weightKg: 5}
+	kettle := parcel{weightKg: 8}
+	urgentKettle := parcel{weightKg: 8, express: true}
+	urgentEnvelope := parcel{express: true}
+
+	_, _, _, _, _ = letter, boots, kettle, urgentKettle, urgentEnvelope // keeps the compiler quiet until the prints are live; delete it then
+
+	// fmt.Println(letter.cost())
+	// fmt.Println(boots.cost())
+	// fmt.Println(kettle.cost())
+	// fmt.Println(urgentKettle.cost())
+	// fmt.Println(urgentEnvelope.cost())
+	fmt.Print() // keeps the fmt import used until the prints are live; delete it then
 }

@@ -1,0 +1,4 @@
+{beer:Bitter litres:50 chilled:true}
+{beer:Stout litres:30 chilled:false}
+{beer:Mild litres:0 chilled:false}
+{beer: litres:0 chilled:false}
