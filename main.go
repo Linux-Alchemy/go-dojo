@@ -3,32 +3,47 @@ package main
 import "fmt"
 
 // ╔════════════════════════════════════════════════════════════════╗
-// ║ DOJO REP 023 · ch5 structs · difficulty 3/10 · ~4 min         ║
-// ║ shape: TRANSLATE · tags: anonymous-structs                    ║
+// ║ DOJO REP 024 · ch5 structs · difficulty 3/10 · ~4 min          ║
+// ║ shape: FIX · tags: embedded-structs, short-decl                ║
 // ╠════════════════════════════════════════════════════════════════╣
-// ║ CONTEXT  A pub lists how many seats a booth can offer.       ║
-// ║ TASK                                                        ║
-// ║ 1. Translate the Python below into Go inside main.          ║
-// ║ 2. Use an anonymous struct literal for booth, with fields   ║
-// ║    matching the dictionary keys. Choose their Go types.     ║
-// ║    Do not declare a named struct type or use a map.         ║
-// ║ 3. Keep the data and behaviour; show is supplied for you.   ║
-// ║ EXPECTED OUTPUT                                             ║
-// ║   Moon 0                                                    ║
+// ║ CONTEXT  Pub quiz scoreboard. Any team scoring 7 or more in a  ║
+// ║          round gets a 3-point bonus.                           ║
+// ╠════════════════════════════════════════════════════════════════╣
+// ║ TASK                                                           ║
+// ║  This doesn't compile. Two bugs, one error each.               ║
+// ║  1. Fix both. Leave the embedding in place: entry must still   ║
+// ║     embed team, and main must still print e.name directly.    ║
+// ║  2. Before you type the fix, write one comment line above each ║
+// ║     bug naming what was wrong.                                 ║
+// ╠════════════════════════════════════════════════════════════════╣
+// ║ EXPECTED OUTPUT                                                ║
+// ║   Quizzly Bears captained by Ada                               ║
+// ║   round 3: 10 points                                           ║
 // ╚════════════════════════════════════════════════════════════════╝
 
-// Python:
-// booth = {"name": "Moon", "seats": 8, "reserved": True}
-// available = booth["seats"]
-// if booth["reserved"]:
-//     available = 0
-// show(booth["name"], available)
+type team struct {
+	name    string
+	captain string
+}
 
-// show prints the booth name and the number of seats available.
-func show(name string, available int) {
-	fmt.Println(name, available)
+type entry struct {
+	team
+	round int
+	score int
 }
 
 func main() {
-	// Your translation here.
+	e := entry{
+		name:    "Quizzly Bears",
+		captain: "Ada",
+		round:   3,
+		score:   7,
+	}
+	fmt.Println(e.name, "captained by", e.captain)
+
+	total := e.score
+	if e.score >= 7 {
+		total := total + 3
+	}
+	fmt.Printf("round %d: %d points\n", e.round, total)
 }
